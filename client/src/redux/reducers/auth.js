@@ -14,11 +14,14 @@ const authSlice = createSlice({
     reducers: {
         userExists: (state, action) => {
             state.user = action.payload;
+          // console.log("fsefr")
             state.isAdmin = action.payload.isAdmin;
+           //console.log("serfr")
             state.loader=false;
         },
         userNotExists: (state) => {
             state.user = null;
+            state.isAdmin=false;
             state.loader = false;
         },
     },
@@ -27,10 +30,12 @@ const authSlice = createSlice({
         builder
         .addCase(adminLogin.fulfilled,(state,action)=>{
         state.isAdmin = true;
+        state.loader=false;
         toast.success(action.payload);
         })
         .addCase(adminLogin.rejected, (state, action) => {
             state.isAdmin = false;
+            state.loader=false;
             toast.error(action.error.message);
           })
         

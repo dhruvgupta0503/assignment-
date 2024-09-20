@@ -68,7 +68,7 @@ const Login = () => {
         },
         config
       );
-      dispatch(userExists(data.user));
+      dispatch(userExists({...data.user,isAdmin:true}));
       toast.success(data.message,{
         id:toastId,
       });
